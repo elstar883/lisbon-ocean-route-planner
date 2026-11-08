@@ -519,11 +519,13 @@ function renderEvents() {
 function renderPace() {
   const paceBtns = document.querySelectorAll(".pace-btn");
   paceBtns.forEach((btn) => {
-    if (btn.dataset.pace === state.pace) {
+    const isActive = btn.dataset.pace === state.pace;
+    if (isActive) {
       btn.classList.add("active");
     } else {
       btn.classList.remove("active");
     }
+    btn.setAttribute("aria-pressed", String(isActive));
   });
   
   const paceCfg = PACE_CONFIG[state.pace];
@@ -743,6 +745,9 @@ function setupBottomNav() {
     prepare: "checklist"
   };
 
+  const todayBtn = document.querySelector('.bottom-nav__btn[data-nav="today"]');
+  if (todayBtn) todayBtn.classList.add("active");
+
   document.querySelectorAll(".bottom-nav__btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const targetId = targets[btn.dataset.nav];
@@ -807,12 +812,18 @@ function setupEventListeners() {
   const demoPanelHeader = document.getElementById("demoPanelHeader");
   const demoPanelToggle = document.getElementById("demoPanelToggle");
   if (demoPanelHeader) {
-    demoPanelHeader.addEventListener("click", () => {
+    const toggleDemoPanel = () => {
       demoPanel.classList.toggle("collapsed");
-      if (demoPanel.classList.contains("collapsed")) {
-        if (demoPanelToggle) demoPanelToggle.textContent = "+";
-      } else {
-        if (demoPanelToggle) demoPanelToggle.textContent = "−";
+      const collapsed = demoPanel.classList.contains("collapsed");
+      if (demoPanelToggle) demoPanelToggle.textContent = collapsed ? "+" : "−";
+      demoPanelHeader.setAttribute("aria-expanded", String(!collapsed));
+    };
+
+    demoPanelHeader.addEventListener("click", toggleDemoPanel);
+    demoPanelHeader.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleDemoPanel();
       }
     });
   }
