@@ -1,0 +1,16 @@
+{
+  "name": "lisbon-ocean-route-planner",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Адаптивный планировщик поездки «Лиссабон и океан»: маршрут, темп, бюджет, бронирования и чек-лист.",
+  "license": "MIT",
+  "author": "Elsa (elstar883)",
+  "scripts": {
+    "check": "node scripts/validate.mjs",
+    "serve": "python3 -m http.server 8080 --directory app"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
