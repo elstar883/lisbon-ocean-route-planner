@@ -76,7 +76,7 @@ for (const file of requiredFiles) {
 const packageJson = await readJson("package.json");
 check(packageJson.name === "lisbon-ocean-route-planner", "неожиданное имя пакета");
 check(packageJson.type === "module", 'в package.json должно быть "type": "module"');
-check(packageJson.version === "1.0.0", "версия package.json должна быть 1.0.0");
+check(packageJson.version === "1.0.1", "версия package.json должна быть 1.0.1");
 check(packageJson.license === "MIT", "лицензия в package.json должна быть MIT");
 check(
   !packageJson.dependencies && !packageJson.devDependencies,

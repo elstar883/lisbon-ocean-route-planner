@@ -1,6 +1,6 @@
 {
   "name": "lisbon-ocean-route-planner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "description": "Адаптивный планировщик поездки «Лиссабон и океан»: маршрут, темп, бюджет, бронирования и чек-лист.",
